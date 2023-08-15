@@ -1,10 +1,14 @@
-import { Component } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+@Pipe({
+  name: 'temperatureConverter',
 })
-export class AppComponent {
-  title = 'learn-kgtech-exam-01';
+export class ConvertPipe implements PipeTransform {
+  transform(value: number) {
+    if (value && !isNaN(value)) {
+      var tempareature = ((value - 32) * 5) / 9;
+      return tempareature.toFixed(2);
+    }
+    return;
+  }
 }
